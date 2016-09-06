@@ -1,0 +1,51 @@
+<div class="jumbotron text-center">
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1><%= @user.first_name %> <%= @user.last_name %>'s Profile</h1>
+            <%= image_tag @user.avatar.url, :width => "200", class: "img-thumbnail" %>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-offset-4">
+<%= form_for @user, :url => user_path, :html => {id: '@user.id', :multipart => true} do |f| %>
+<table>
+    <thead>
+        <tr>
+        <td></td>
+        </tr>
+    </thead>
+    <tbody class="zebra">
+        <tr>
+            <td><%= f.label :avatar %></td>
+            <td><%= f.file_field :avatar, class: "form-control" %></td>
+        </tr>
+        <tr>
+            <td><%= f.label :first_name %></td>
+            <td><%= f.text_field :first_name, class: "form-control" %></td>
+        </tr>
+        <tr>
+            <td><%= f.label :last_name %></td>
+            <td><%= f.text_field :last_name, class: "form-control" %></td>
+        </tr>
+
+        <tr>
+            <td><%= f.label :email %></td>
+            <td><%= f.text_field :email, class: "form-control" %></td>
+        </tr>
+        <tr>
+            <td><%= f.submit :submit, class: "btn btn-primary btn-large btn-block" %></td>
+        </tr>
+        
+    </tbody>  
+</table>
+
+<% end %>
+            <% if flash[:alert].present? %>
+                <h3 style="color:#337ab7"><%= flash[:alert] %></h3>
+            <% end %>
+            <% if flash[:errors].present? %>
+                <h3 style="color:#337ab7"><%= flash[:errors] %></h3>
+            <% end %>
+            </div></div></div>
+</div>

@@ -1,0 +1,51 @@
+<div class="text-center">
+    <%= image_tag 'family', width:110 %>
+    <p style="color:#3488e7">FamilyBook</p>
+</div>
+
+<div class="wrapper">
+    <div class="container" style="padding-top:35px">
+        
+            <% if flash[:errors].present? %>
+                <h2 style="color:#337ab7"><%= flash[:errors] %>.</h2>
+                <% else %>
+                <h2>Enter your Information</h2>
+            <% end %>
+        <form class="form" action="/users" method="post">
+        <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+            <input type="text" placeholder="Email" name="user[email]">
+            <input type="text" placeholder="First Name" name="user[first_name]">
+            <input type="text" placeholder="Last Name" name="user[last_name]">
+            <input type="password" placeholder="Password" name="user[password]">
+            <input type="password" placeholder="Confirm Password" name="user[password_confirmation]">
+            <input type="submit" id="login_button" value="Create">
+            <!-- <button href="/users/new" type="submit" id="login-button">Join</button> -->
+
+            <a href="../">Ready to Log in?</a>
+        </form>
+
+    </div>
+    
+    <ul class="bg-bubbles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+    <!-- <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script> -->
+    <!-- https://codepen.io/Lewitje/pen/BNNJjo -->
+    <%= javascript_include_tag "login_index" %>
+    <%= stylesheet_link_tag "login_style" %>
+
+<div class="footer">
+  <ul>
+    <li class="footer-item">&copy; 2016 Yung Kim</li>
+  </ul>
+</div>

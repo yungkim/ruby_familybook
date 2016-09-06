@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Familybook</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <%= favicon_link_tag 'favicon.ico' %>
+</head>
+<body>
+
+  <% if session[:user_id].present? %>
+  <!-- http://bootsnipp.com/snippets/featured/navbar-fixed-on-scrolling-with-transition -->
+<!-- Fixed navbar -->
+        <nav id="header" class="navbar navbar-fixed-top">
+            <div id="header-container" class="container navbar-container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a id="brand" class="navbar-brand" href="/family"><%= image_tag 'family', width: 95 %>FamilyBook</a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="/family/tree">Family Tree</a></li>
+                        <li ><a href="/moments">Moments</a></li>
+                        <li ><a href="/photos">Photos</a></li>
+                        <li><a href="/users/<%= session[:user_id]%>"><%= @user.first_name %> <%= @user.last_name %></a></li>
+                        <li><%= link_to 'Log out', '/logout', method: :delete, data: { confirm: 'Are you sure you want to logout?' }  %></li>
+                    </ul>
+                </div><!-- /.nav-collapse -->
+            </div><!-- /.container -->
+        </nav><!-- /.navbar -->
+
+<% end %>
+
+<%= yield %>
+
+
+</body>
+</html>

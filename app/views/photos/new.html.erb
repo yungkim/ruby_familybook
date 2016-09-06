@@ -1,0 +1,52 @@
+<div class="jumbotron text-center">
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>Upload a new photo</h1>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-md-offset-4">
+<%= form_for @photo, :url => photos_path, :html => {id: '@user.id', :multipart => true} do |f| %>
+<table>
+    <thead>
+        <tr>
+        <td></td>
+        </tr>
+    </thead>
+    <tbody class="zebra">
+        <tr>
+            <td><%= f.label :event_id %></td>
+            <td><%= select("photo", "event_id", Event.all.collect {|e| [ e.title, e.id ] }, { include_blank: true }) %></td>
+        </tr>
+
+        <tr>
+            <td><%= f.label :photo %></td>
+            <td><%= f.file_field :photo, class: "form-control" %></td>
+        </tr>
+        <tr>
+            <td><%= f.label :title %></td>
+            <td><%= f.text_field :title, class: "form-control" %></td>
+        </tr>
+        <tr>
+            <td><%= f.label :description %></td>
+            <td><%= f.text_area :description, class: "form-control" %></td>
+        </tr>
+
+        <tr>
+            <td><%= f.submit :submit, class: "btn btn-primary btn-large btn-block" %></td>
+        </tr>
+        
+    </tbody>  
+</table>
+
+<% end %>
+            <% if flash[:alert].present? %>
+                <h3 style="color:#337ab7"><%= flash[:alert] %></h3>
+            <% end %>
+            <% if flash[:errors].present? %>
+                <h3 style="color:#337ab7"><%= flash[:errors] %></h3>
+            <% end %>
+            </div></div></div>
+</div>

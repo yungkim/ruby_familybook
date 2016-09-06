@@ -1,0 +1,109 @@
+<div class="jumbotron text-center">
+<h1>Moment</h1>
+
+
+<%= form_for @event, :url => event_path, :html => {id: '@event.id', :multipart => true} do |f| %>
+<h3>When (Start, End): <%= f.date_field :start_date, class: "form-control" %> <%= f.date_field :end_date, class: "form-control" %></h3>
+<h4>Where: <%= f.text_field :location, class: "form-control", cols: "5" %></h4>
+<h3>Event Name: <%= f.text_field :title, class: "form-control", rows: "5" %></h3>
+
+
+        <tr>
+            <td><%= f.label :description %></td>
+            <td><%= f.text_area :description, class: "form-control", rows: "5" %></td>
+        </tr>
+        <tr>
+            <td><%= f.submit :Update, class: "btn btn-primary btn-large btn-block" %></td>
+        </tr>
+<% end %>
+
+<h2>Children in this event: 
+<% @children_in.each do |c| %>
+<button type="button" class="btn btn-default btn-md">
+<%= link_to c.first_name, "/moments/without/#{c.id}/#{@event.id}", method: :delete %>
+            
+        <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+</button>
+                        <% end %>
+</h2>
+
+                        
+
+<h2>Children not in this event: 
+<% @children_out.each do |c| %>
+
+
+
+<button type="button" class="btn btn-default btn-md">
+    <%= link_to c.first_name, "/moments/with/#{c.id}/#{@event.id}", method: :post %>
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+    <% end %>
+</button>
+                             
+                
+</h2>
+
+<button type="button" class="btn btn-default btn-lg">
+    <a href="/moments">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Back
+    </a>
+</button>
+
+<% if flash[:alert].present? %>
+                <h3 style="color:#337ab7"><%= flash[:alert] %></h3>
+            <% end %>
+            <% if flash[:errors].present? %>
+                <h3 style="color:#337ab7"><%= flash[:errors] %></h3>
+            <% end %>
+
+<br>
+<br>
+
+
+
+
+<h1>Photos!</h1>
+<% @photos.each do |p| %>
+<%= image_tag p.photo %>
+<% end %>
+
+
+
+
+
+<h1>Add a new photo for this event.</h1>
+<%= form_for @photo, :url => photos_path, :html => {id: '@user.id', :multipart => true} do |f| %>
+<%= f.hidden_field :event_id, value: @event.id %>
+<table>
+    <thead>
+        <tr>
+        <td></td>
+        </tr>
+    </thead>
+    <tbody class="zebra">
+
+
+        <tr>
+            <td><%= f.label :photo %></td>
+            <td><%= f.file_field :photo, class: "form-control" %></td>
+        </tr>
+        <tr>
+            <td><%= f.label :title %></td>
+            <td><%= f.text_field :title, class: "form-control" %></td>
+        </tr>
+        <tr>
+            <td><%= f.label :description %></td>
+            <td><%= f.text_area :description, class: "form-control" %></td>
+        </tr>
+
+        <tr>
+            <td><%= f.submit :submit, class: "btn btn-primary btn-large btn-block" %></td>
+        </tr>
+        
+    </tbody>  
+</table>
+
+<% end %>
+</div>
+
+

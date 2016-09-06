@@ -1,0 +1,40 @@
+<div class="jumbotron text-center">
+<div class="row">
+<div class="col-sm-12">
+<h3>Add a child:</h3>
+<%= form_for @child , url: {controller:"children", action: "create"} do |f| %>
+    <table>
+    <tr>
+        <td><%= f.label :first_name, class: "form-control" %></td>
+        <td><%= f.text_field :first_name, class: "form-control" %></td>
+    </tr>
+    <tr>
+        <td><%= f.label :birthday, class: "form-control" %></td>
+        <td><%= f.date_select :birthday, class: "form-control", :start_year=> Date.today.year - 40, end_year: Date.today.year %></td>
+    </tr>
+    <tr>
+        <td><%= f.label :gender, class: "form-control" %></td>
+        <td><%= f.select :gender, [['Boy', 'Boy'], ['Girl', 'Girl']], class: "form-control" %></td>
+    </tr>
+    <tr>
+        <td><%= f.submit 'Create', class: "btn btn-primary btn-large btn-block"  %></td>
+    </tr>
+</table>
+
+<% end %>
+<button type="button" class="btn btn-default btn-lg">
+    <a href="/family/tree">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> Back
+    </a>
+</button>
+            
+</div>
+</div>
+
+</div>
+<% if flash[:alert].present? %>
+                <h3 style="color:#337ab7"><%= flash[:alert] %></h3>
+            <% end %>
+            <% if flash[:errors].present? %>
+                <h3 style="color:#337ab7"><%= flash[:errors] %></h3>
+            <% end %>

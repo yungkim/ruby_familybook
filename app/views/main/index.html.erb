@@ -1,0 +1,9 @@
+<div class="jumbotron text-center">
+    <h1><%= @user.last_name %>'s Family</h1>
+
+    <img src="<%= @user.avatar %>" width="200" class="img-thumbnail">
+
+    <h2>Number of children: <%= @user.children.count %></h2>
+    <h2>Number of moments: <%= @user.events.count %></h2>
+    <h2>Number of photos:</h2>
+</div>
