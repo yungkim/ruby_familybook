@@ -7,7 +7,7 @@ gem 'bootstrap-sass', '~> 3.3.6'
 # automatically adds the proper vendor prefixes to your CSS code when it is compiled.
 gem 'autoprefixer-rails'
 
-gem 'paperclip', '~> 4.2'
+gem 'paperclip', '~> 5.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
